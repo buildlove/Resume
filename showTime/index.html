@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+  个人作品集锦 · 主页面（纯静态脚手架）
+  作品内容由 js/works-config.js 配置驱动，本文件一般不需要改
+  更新：20261119 13:01:11
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李洋 · 个人作品集</title>
+  <meta name="description" content="李洋的个人作品集：前端 / 全栈 / GIS 可视化作品打包演示与线上链接合集。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c3aed'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='34' font-weight='bold' fill='white'%3EW%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======== 头部：标题 + 筛选栏 ======== -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="page-title" id="siteTitle">个人作品集</h1>
+      <p class="page-subtitle" id="siteSubtitle">作品加载中……</p>
+      <!-- 标签筛选：由配置自动生成 -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-tag="*">全部</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======== 作品卡片网格 ======== -->
+  <main class="container">
+    <section class="works-grid" id="worksGrid">
+      <!-- 卡片由 js/main.js 根据配置渲染 -->
+    </section>
+    <!-- 空状态提示 -->
+    <p class="empty-tip" id="emptyTip" hidden>
+      该分类下暂无作品，点「全部」看看 →
+    </p>
+  </main>
+
+  <!-- ======== 作品预览弹窗（内嵌 iframe） ======== -->
+  <div class="modal" id="previewModal" hidden>
+    <!-- 点击遮罩关闭 -->
+    <div class="modal-mask" id="modalMask"></div>
+    <div class="modal-panel">
+      <!-- 弹窗工具栏 -->
+      <div class="modal-toolbar">
+        <span class="modal-title" id="modalTitle">作品预览</span>
+        <div class="modal-actions">
+          <a class="modal-btn" id="modalOpenNew" href="#" target="_blank" rel="noopener">新窗口打开</a>
+          <a class="modal-btn" id="modalRepo" href="#" target="_blank" rel="noopener" hidden>源码</a>
+          <button class="modal-btn modal-close" id="modalClose" type="button">✕ 关闭</button>
+        </div>
+      </div>
+      <!-- 作品预览区：打包作品和云链接统一用 iframe 内嵌 -->
+      <iframe class="modal-frame" id="modalFrame" title="作品预览"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+    </div>
+  </div>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="page-footer">
+    <div class="container" id="siteFooter">© 2026 · 作品集锦</div>
+  </footer>
+
+  <!-- 先加载配置，再加载渲染逻辑 -->
+  <script src="js/works-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

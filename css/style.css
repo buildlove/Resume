@@ -1,0 +1,357 @@
+/* ============================================================
+   个人线上简历 · 样式表（侧栏悬浮版）
+   布局：左侧悬浮栏（基础信息 + 菜单 + 联系方式）+ 右侧主内容铺满
+   特点：零外部依赖 / 深浅色自适应 / 响应式 / 打印友好
+   改版：20261119 13:20:13 紧凑排版；同日侧栏悬浮布局重构
+   ============================================================ */
+
+/* ---------- 设计变量（深浅色两套主题） ---------- */
+:root {
+  --bg: #f7f8fa;            /* 页面背景 */
+  --surface: #ffffff;       /* 卡片 / 侧栏背景 */
+  --surface-alt: #eef1f5;   /* 交替区块背景 */
+  --text: #1f2937;          /* 主文字 */
+  --muted: #6b7280;         /* 次要文字 */
+  --primary: #1d4ed8;       /* 主题色（沉稳蓝） */
+  --primary-soft: #dbeafe;  /* 主题色浅底 */
+  --border: #e5e7eb;        /* 描边 */
+  --shadow: 0 2px 12px rgba(15, 23, 42, 0.08);   /* 卡片阴影 */
+  --sidebar-width: 300px;   /* 左侧悬浮栏宽度 */
+}
+
+/* 暗色主题：跟随系统 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-alt: #172033;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --primary: #60a5fa;
+    --primary-soft: #1e3a5f;
+    --border: #334155;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* 手动切换主题：data-theme 属性优先级高于系统偏好 */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-alt: #172033;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --primary: #60a5fa;
+  --primary-soft: #1e3a5f;
+  --border: #334155;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+[data-theme="light"] {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-alt: #eef1f5;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #1d4ed8;
+  --primary-soft: #dbeafe;
+  --border: #e5e7eb;
+  --shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+}
+
+/* ---------- 基础重置 ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 15px;
+  transition: background 0.25s, color 0.25s;
+}
+
+a { color: var(--primary); text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   左侧悬浮栏：基础信息 + 菜单 + 联系方式（固定不随内容滚动）
+   ============================================================ */
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  overflow-y: auto;                 /* 内容超高时侧栏内部滚动 */
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 30px 24px;
+}
+.sidebar-inner {
+  display: flex; flex-direction: column; gap: 20px;
+  min-height: 100%;
+}
+
+/* 基础信息 */
+/* 头像：缩小后悬浮在主题切换按钮右边 */
+.side-bottom {
+  margin-top: auto;                /* 推到侧栏底部 */
+  display: flex; align-items: center;
+}
+.side-avatar {
+  display: block;
+  width: 44px; height: 44px;       /* 小尺寸头像 */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-soft);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+  margin-left: auto;               /* 悬浮到右边 */
+  transform: translateY(-2px);     /* 轻微上浮 */
+}
+.side-hello { color: var(--primary); font-weight: 600; letter-spacing: 2px; font-size: 0.85rem; }
+.side-name { font-size: 2rem; font-weight: 800; line-height: 1.2; margin: 2px 0; }
+.side-tagline { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+.side-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.side-chips li {
+  background: var(--primary-soft); color: var(--primary);
+  padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 500;
+}
+
+/* 导航菜单（竖排，滚动时高亮当前区块） */
+.side-menu {
+  display: flex; flex-direction: column; gap: 2px;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+.side-menu a {
+  padding: 8px 12px; border-radius: 8px;
+  color: var(--muted); font-size: 0.95rem;
+  border-left: 3px solid transparent; transition: 0.2s;
+}
+.side-menu a:hover { color: var(--primary); background: var(--primary-soft); }
+.side-menu a.active {
+  color: var(--primary); font-weight: 600;
+  border-left-color: var(--primary); background: var(--primary-soft);
+}
+
+/* 联系方式 */
+.side-contact {
+  display: flex; flex-direction: column; gap: 10px;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+.side-contact li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+.contact-label { flex-shrink: 0; width: 52px; color: var(--muted); font-size: 0.82rem; }
+.contact-value { font-size: 0.92rem; font-weight: 600; color: var(--text); word-break: break-all; }
+/* GitHub 蓝色链接（侧栏内直接点击跳转） */
+.contact-link {
+  color: var(--primary); font-weight: 600; font-size: 0.92rem;
+}
+.contact-link:hover { text-decoration: underline; }
+
+/* 点击显示/复制按钮样式 */
+.contact-btn {
+  background: none; border: none; cursor: pointer; text-align: left;
+  color: var(--primary); font-family: inherit; padding: 0;
+}
+.contact-btn:hover { text-decoration: underline; }
+
+/* 主题切换按钮：推到侧栏底部 */
+.theme-toggle {
+  margin-top: auto;
+  background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px;
+  width: 34px; height: 34px; cursor: pointer; font-size: 0.95rem; line-height: 1;
+}
+
+/* ============================================================
+   右侧主内容：铺满剩余宽度（吃掉左右空白）
+   ============================================================ */
+.content {
+  margin-left: var(--sidebar-width);
+  padding: 0 32px;
+}
+.container { max-width: 1440px; margin: 0 auto; padding: 0; }
+
+/* ---------- 通用 Section（紧凑） ---------- */
+.section { padding: 28px 0 22px; }
+.section-alt { background: var(--surface-alt); }
+.section-title {
+  font-size: 1.35rem; font-weight: 700; margin-bottom: 6px;
+  position: relative; padding-left: 12px;
+}
+.section-title::before {
+  content: ""; position: absolute; left: 0; top: 0.25em;
+  width: 5px; height: 1.15em; background: var(--primary); border-radius: 3px;
+}
+.section-lead { color: var(--muted); max-width: 900px; margin-bottom: 12px; font-size: 0.94rem; line-height: 1.6; }
+.section-lead strong { color: var(--text); }
+
+/* ---------- 个人优势卡片（横向铺满） ---------- */
+.advantage-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+}
+.advantage-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 13px 14px; box-shadow: var(--shadow); transition: transform 0.2s;
+}
+.advantage-card:hover { transform: translateY(-3px); }
+.advantage-card h3 { font-size: 0.96rem; margin-bottom: 5px; color: var(--primary); }
+.advantage-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+
+/* ---------- 技术栈 ---------- */
+.skill-groups {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+}
+.skill-group {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 11px 13px;
+}
+.skill-group h3 { font-size: 0.95rem; margin-bottom: 7px; color: var(--text); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tags li {
+  background: var(--primary-soft); color: var(--primary);
+  padding: 3px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 500;
+}
+
+/* ---------- 工作经历（纵向时间线：竖线 + 圆点） ---------- */
+.timeline { position: relative; padding-left: 26px; }
+.timeline::before {
+  content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px;
+  width: 2px; background: var(--border);
+}
+.timeline-item { position: relative; margin-bottom: 14px; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -26px; top: 8px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--primary); border: 3px solid var(--bg);
+}
+
+.timeline-body {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 15px; box-shadow: var(--shadow);
+}
+.timeline-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 4px; margin-bottom: 6px;
+}
+.timeline-head h3 { font-size: 0.98rem; }
+.timeline-org { color: var(--muted); font-size: 0.83rem; font-weight: 500; }
+.timeline-head time {
+  color: var(--muted); font-size: 0.76rem;
+  background: var(--surface-alt); padding: 2px 9px; border-radius: 999px;
+}
+.timeline-body ul { display: grid; gap: 4px; }
+.timeline-body li {
+  color: var(--muted); font-size: 0.82rem; line-height: 1.45;
+  padding-left: 13px; position: relative;
+}
+.timeline-body li::before {
+  content: ""; position: absolute; left: 1px; top: 0.55em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--primary);
+}
+
+/* ---------- 项目卡片 ---------- */
+.project-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+.project-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 13px 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px;
+}
+.project-card header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.project-card h3 { font-size: 1rem; }
+.project-tag {
+  flex-shrink: 0; font-size: 0.75rem; color: var(--primary);
+  background: var(--primary-soft); padding: 2px 9px; border-radius: 999px;
+}
+.project-desc {
+  color: var(--muted); font-size: 0.82rem; line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.project-card ul { display: grid; gap: 4px; }
+.project-card li {
+  font-size: 0.8rem; line-height: 1.45; color: var(--muted); padding-left: 13px; position: relative;
+}
+.project-card li::before {
+  content: ""; position: absolute; left: 1px; top: 0.55em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--primary);
+}
+.project-stack {
+  margin-top: auto; padding-top: 6px; border-top: 1px dashed var(--border);
+  font-size: 0.78rem; color: var(--primary); font-family: "SF Mono", Consolas, monospace;
+}
+
+/* ---------- 教育经历 ---------- */
+.edu-list li {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 11px 15px; margin-bottom: 8px;
+}
+.edu-list time { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- 页脚（避开左侧悬浮栏遮挡，文字居右） ---------- */
+.site-footer {
+  margin-left: var(--sidebar-width);   /* 与主内容对齐，防止被悬浮栏盖住 */
+  padding: 16px 32px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 0.85rem;
+  text-align: right;                    /* 居右展示 */
+}
+/* （"最后更新"行已按需求移除，.footer-sub 样式一并清理） */
+
+/* ============================================================
+   响应式：≤900px 侧栏转为顶部区块，主内容单列流式
+   ============================================================ */
+@media (max-width: 900px) {
+  .sidebar {
+    position: static; width: 100%;
+    border-right: none; border-bottom: 1px solid var(--border);
+    padding: 20px 18px;
+  }
+  .sidebar-inner { gap: 14px; }
+  .side-name { font-size: 1.75rem; }
+  .side-avatar { width: 40px; height: 40px; }
+
+  /* 菜单改横向排布，可换行 */
+  .side-menu {
+    flex-direction: row; flex-wrap: wrap; gap: 6px;
+    border-top: none; padding-top: 0;
+  }
+  .side-menu a {
+    padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--border); border-left-width: 1px;
+    font-size: 0.88rem;
+  }
+  .side-menu a.active { border-color: var(--primary); }
+
+  .side-contact { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; border-top: none; padding-top: 0; }
+  .theme-toggle { margin-top: 0; }
+
+  .content { margin-left: 0; padding: 0 16px; }
+  .site-footer { margin-left: 0; padding: 14px 16px 20px; text-align: center; }
+  .section { padding: 22px 0 16px; }
+  .section-title { font-size: 1.22rem; }
+}
+
+/* 小屏手机进一步收紧 */
+@media (max-width: 420px) {
+  .side-chips li { font-size: 0.74rem; }
+  .project-card h3 { font-size: 0.95rem; }
+}
+
+/* ---------- 打印样式（A4 输出） ---------- */
+@media print {
+  .side-menu, .theme-toggle { display: none !important; }
+  .sidebar {
+    position: static; width: 100%; border-right: none;
+    border-bottom: 2px solid #000; padding: 0 0 10pt;
+  }
+  .content { margin-left: 0; padding: 0; }
+  .site-footer { margin-left: 0; padding: 10pt 0; text-align: right; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .section { padding: 10pt 0; break-inside: avoid; }
+  .advantage-card, .timeline-body, .project-card, .skill-group { box-shadow: none; }
+}

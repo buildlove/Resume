@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--
+  个人线上简历 · 李洋（纯静态，零外部依赖，可直接发布 GitHub Pages）
+  内容来源：/Users/apple/workspace/Documents/programs/简历/了解李洋/ 画像库
+  更新：20261119 13:01:11
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO 基础信息 -->
+  <title>李洋 · 个人简历</title>
+  <meta name="description" content="李洋，AI 驱动研发实践：AI 工具深度融入需求拆解、编码、排障；前端 / 后端 / 运维全链路交付，擅长 GIS 可视化与政企行业交付。">
+  <meta name="keywords" content="李洋,AI研发,AI工程化,AI编码,Vue3,TypeScript,React,Node.js,GIS可视化,武汉求职">
+  <meta name="author" content="李洋">
+  <!-- 社交分享卡片（Open Graph） -->
+  <meta property="og:title" content="李洋 · 个人简历">
+  <meta property="og:description" content="AI 驱动研发 · 前端 / 后端 / 运维全链路 · 武汉">
+  <meta property="og:type" content="profile">
+  <!-- 站点图标（内联 SVG，免额外请求） -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 结构化数据：帮助搜索引擎理解简历内容 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "李洋",
+    "address": { "@type": "PostalAddress", "addressLocality": "武汉" },
+    "url": "https://github.com/buildlove",
+    "knowsAbout": ["AI 研发工作流", "AI Agent", "LoRA 微调", "Vue3", "TypeScript", "React", "Node.js", "GIS 可视化"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ======== 左侧悬浮栏：基础信息 + 菜单 + 联系方式（固定悬浮） ======== -->
+  <aside class="sidebar" id="top">
+    <div class="sidebar-inner">
+
+      <!-- 基础信息 -->
+      <div class="side-profile">
+        <p class="side-hello">你好，我是</p>
+        <h1 class="side-name">李洋</h1>
+        <p class="side-tagline">AI 驱动研发 · 前端 / 后端 / 运维全链路交付</p>
+        <ul class="side-chips">
+          <li>AI 研发工作流</li>
+          <li>AI 编码 · Agent 研究</li>
+        </ul>
+      </div>
+
+      <!-- 导航菜单（滚动时高亮当前区块） -->
+      <nav class="nav-links side-menu" id="navLinks">
+        <a href="#about">关于我</a>
+        <a href="#experience">工作经历</a>
+        <a href="#projects">项目经验</a>
+        <a href="#skills">技术栈</a>
+        <a href="#education">教育经历</a>
+      </nav>
+
+      <!-- 联系方式（手机号由 JS 渲染防骚扰；邮箱 / GitHub 明文直出） -->
+      <ul class="side-contact">
+        <li>
+          <span class="contact-label">出生</span>
+          <span class="contact-value">1991 年 6 月</span>
+        </li>
+        <li>
+          <span class="contact-label">邮箱</span>
+          <a class="contact-value" href="mailto:564845354@qq.com">564845354@qq.com</a>
+        </li>
+        <li>
+          <span class="contact-label">手机</span>
+          <button class="contact-value contact-btn" id="phoneText" type="button" title="点击复制">点击显示手机号</button>
+        </li>
+        <li>
+          <a class="contact-link" href="https://github.com/buildlove" target="_blank" rel="noopener">GitHub</a>
+          <!-- <a class="contact-link" href="showTime/" target="_blank" rel="noopener">作品展示</a> -->
+        </li>
+      </ul>
+
+      <!-- 底部：主题切换按钮 + 小头像悬浮在按钮右边 -->
+      <div class="side-bottom">
+        <button class="theme-toggle" id="themeToggle" aria-label="切换深浅色主题">🌙</button>
+        <img class="side-avatar" src="assets/avatar.png" alt="李洋 头像">
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ======== 右侧主内容（铺满剩余宽度） ======== -->
+  <main class="content">
+
+    <!-- ======== 关于我 / 个人优势（置于最上面） ======== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">关于我</h2>
+        <p class="section-lead">
+          经历多行业项目历练。
+          <strong>把 AI 深度融入研发全流程</strong>——需求拆解、方案设计、智能编码、代码重构、缺陷排查、性能调优；
+          前端、后端、运维全链路独立交付。擅长把复杂业务拆成可落地的技术方案，是问题的解决者，也是知识的传播者。
+        </p>
+        <div class="advantage-grid">
+          <article class="advantage-card">
+            <h3>AI 工程化应用</h3>
+            <p>AI 深度融入需求拆解、编码、重构、排障全流程；实践 Agent 研究、LoRA 微调、Open WebUI / RAG。</p>
+          </article>
+          <article class="advantage-card">
+            <h3>前端研发</h3>
+            <p>精通 Vue3+TS；React、Angular、qiankun 微前端；组件库 / 脚手架自研、uniapp 多端。</p>
+          </article>
+          <article class="advantage-card">
+            <h3>后端研发</h3>
+            <p>Node.js / Python / Java 独立交付 50+ 标准化 API；MySQL 设计与优化。</p>
+          </article>
+          <article class="advantage-card">
+            <h3>运维与安全</h3>
+            <p>Nginx / Linux 部署、多环境发布；RSA / XSS / 等保安全建设。</p>
+          </article>
+          <article class="advantage-card">
+            <h3>行业与其它</h3>
+            <p>多年政企行业交付经验；GIS 可视化；3-6 人团队管理。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== 工作经历 ======== -->
+    <section class="section section-alt" id="experience">
+      <div class="container">
+        <h2 class="section-title">工作经历</h2>
+        <div class="timeline">
+
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <header class="timeline-head">
+                <h3>前端负责人 <span class="timeline-org">| 湖北车安达信息科技有限公司</span></h3>
+                <time>2024.09 - 2026.08</time>
+              </header>
+              <ul>
+                <li>统筹 10+ 政企平台技术架构统一治理，基于 Vue3+TS 完成技术升级、编码规范与工程化体系落地。</li>
+                <li>主导通用业务组件库建设：动态表单、权限选择器、组织树、批量导入导出等高复用模块。</li>
+                <li>搭建安全防护体系：RSA 动态公钥加密、XSS 防护、验证码优化，满足等保与政企合规要求。</li>
+                <li>地图性能专项：解决百度地图内存泄漏，优化点位聚合与轨迹渲染，保障 20+ 区域子项目稳定运行。</li>
+                <li>负责需求评审、任务拆解、风险把控、线上故障兜底与技术岗位招聘。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <header class="timeline-head">
+                <h3>高级前端工程师 <span class="timeline-org">| 湖北海创知芸科技有限公司</span></h3>
+                <time>2022.10 - 2024.07</time>
+              </header>
+              <ul>
+                <li>主导 Vue3+TS + 微前端架构升级，搭建公共组件库、工具库、脚手架，统一 11 个子项目技术标准。</li>
+                <li>牵头 H145 知识管理系统整体交付：任务流程、知识管理、研讨中心等 11 个子系统。</li>
+                <li>参与低代码平台核心研发，负责复杂场景方案设计与技术难点攻坚。</li>
+                <li>组织 CodeReview、技术分享、新人培训，负责技术岗位招聘。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <header class="timeline-head">
+                <h3>WEB 前端 / Node 后端 <span class="timeline-org">| 江西省云眼大视界科技有限公司</span></h3>
+                <time>2017.06 - 2022.10</time>
+              </header>
+              <ul>
+                <li>主导 React+qiankun 微前端改造，单体应用拆分为 80+ 微应用，搭建基座与公共依赖体系。</li>
+                <li>建设 npm 公共库、业务组件库与 Webpack 构建优化方案，提升团队工程化能力。</li>
+                <li>负责 GIS 地图、ECharts/D3 数据可视化、大数据可视化平台研发（人脸 / 车牌结构化研判）。</li>
+                <li>独立负责 uniapp 小程序开发、联调、发布与维护；Node.js 服务端 50+ API 开发。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <header class="timeline-head">
+                <h3>WEB 前端 / Node 后端 <span class="timeline-org">| 上海弘连网络科技有限公司</span></h3>
+                <time>2014.07 - 2017.04</time>
+              </header>
+              <ul>
+                <li>负责浏览器插件、Chrome 扩展、基础服务平台开发与维护（授权 / 更新 / 崩溃中心）。</li>
+                <li>基于 Node 实现云存储上传、邮件告警、崩溃日志收集等服务。</li>
+                <li>编写 Python 自动化脚本，支撑取证业务现场交付。</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== 项目经验 ======== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">项目经验</h2>
+        <div class="project-grid">
+
+          <article class="project-card">
+            <header>
+              <h3>湖北第三方监测平台</h3>
+              <span class="project-tag">湖北车安达 · GIS 可视化</span>
+            </header>
+            <p class="project-desc">视频道路监控平台（衍生交付黄冈、江陵、广西等 20 个区域项目）。</p>
+            <ul>
+              <li>负责整体架构设计、技术选型与规范制定，推动 Vue3+TS 体系落地。</li>
+              <li>实现 ECharts/D3 复杂数据可视化、大数据计算与渲染优化。</li>
+              <li>深度优化高德 / 百度地图，解决内存泄漏、卡顿、海量点位展示问题。</li>
+              <li>统筹需求、排期、联调、上线与线上问题处理，保障多项目并行交付。</li>
+              <li>6 个微信小程序的维护和开发（uniapp 框架）。</li>
+              <li>基于 RuoYi-Vue 脚手架完成一个后台管理项目的二次开发。</li>
+            </ul>
+            <p class="project-stack">Vue3 · TS · ECharts/D3 · 高德/百度地图 · uniapp · RuoYi-Vue</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>物联网资产管理系统</h3>
+              <span class="project-tag">湖北车安达 · 物联网</span>
+            </header>
+            <p class="project-desc">基于 JeecgBoot + Vue2 + Ant Design Vue 的物联网设备全生命周期管理平台，涵盖工单管理、物料管理、进销存、财务管理、报表中心、溯源追踪、数据审核等 11 个业务模块。</p>
+            <ul>
+              <li>负责工单管理、系统设置、进销存、业务单据等核心模块的功能迭代与缺陷修复。</li>
+              <li>设计进销存 ID 编号、工单流转等核心业务逻辑，落实登录安全相关改造，累计完成 60+ 项业务功能开发优化，保障业务流程闭环。</li>
+              <li>负责项目全局 UI/UX 优化，包括登录页备案合规、查看样式规范、上传组件稳定性回退、备注字段限制等，提升系统整体用户体验。</li>
+            </ul>
+            <p class="project-stack">JeecgBoot · Vue2 · Ant Design Vue</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>知识管理系统</h3>
+              <span class="project-tag">湖北海创知芸 · 知识管理</span>
+            </header>
+            <p class="project-desc">政企知识管理项目，涵盖任务流程、知识管理、研讨中心、敏感词管理、知识中心等 11 个子系统。</p>
+            <ul>
+              <li>负责 Vue3 项目整体规划、任务拆解、进度管控与质量保障。</li>
+              <li>搭建组件库、工具库与项目脚手架，提升团队开发效率。</li>
+              <li>攻克兼容、性能、安全等关键问题，完成项目验收交付。</li>
+            </ul>
+            <p class="project-stack">Vue3 · TS · 组件库 · 脚手架 · 低代码平台</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>智慧城市社区</h3>
+              <span class="project-tag">云眼大视界 · 视频大数据</span>
+            </header>
+            <p class="project-desc">视频大数据分析平台，实现人脸、人体、车牌结构化数据可视化研判。</p>
+            <ul>
+              <li>负责 React + qiankun 微前端架构升级，搭建基座与公共组件库。</li>
+              <li>完成单体应用拆分为 80+ 微应用模块，参与多版本迭代开发。</li>
+              <li>负责 uniapp + Vue 微信小程序开发与维护。</li>
+            </ul>
+            <p class="project-stack">React · qiankun · uniapp · Vue</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>非接设备</h3>
+              <span class="project-tag">云眼大视界 · 反窃密</span>
+            </header>
+            <p class="project-desc">反窃密设备管理平台，支持设备接入、协议还原、数据留存与查询检索。</p>
+            <ul>
+              <li>独立负责项目从 0 到 1 全流程开发，完成需求拆解、原型设计与技术方案落地。</li>
+              <li>基于 Vue2 全家桶开发 10+ 业务页面，实现交互逻辑与页面维护。</li>
+              <li>使用 Node.js + Koa 搭建后端工程，封装路由、拦截器，开发 50+ 标准化 API 接口。</li>
+              <li>设计并实现通用 SQL 查询插件，优化数据查询效率与业务扩展能力。</li>
+              <li>负责 ECharts、D3 数据可视化模块开发，实现多维数据图表展示。</li>
+              <li>基于 Leaflet、ArcGIS 开发 GIS 地图功能，完成点位渲染与图层交互。</li>
+            </ul>
+            <p class="project-stack">Vue2 · Node.js + Koa · ECharts/D3 · Leaflet · ArcGIS</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>网镜</h3>
+              <span class="project-tag">上海弘连 · 取证</span>
+            </header>
+            <p class="project-desc">互联网网站取证固定工具，支持网页镜像、截图、哈希计算、勘验报告生成。</p>
+            <ul>
+              <li>负责浏览器插件开发，编写取证脚本实现网页数据抓取。</li>
+              <li>根据客户需求定制脚本，提供现场技术支持与交付。</li>
+              <li>使用 Python 编写自动化处理脚本。</li>
+            </ul>
+            <p class="project-stack">Chrome 插件 · Python · 数据抓取</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== 技术栈 ======== -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <h2 class="section-title">技术栈</h2>
+        <div class="skill-groups">
+          <div class="skill-group">
+            <h3>AI 能力</h3>
+            <ul class="skill-tags">
+              <li>AI 编码工作流</li><li>Claude Code</li><li>需求拆解与方案设计</li>
+              <li>代码重构 / 缺陷排查</li><li>Agent 机制研究</li><li>LoRA 微调</li><li>Open WebUI / RAG</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>前端开发</h3>
+            <ul class="skill-tags">
+              <li>Vue3 + TypeScript</li><li>Vue2</li><li>React18 / 19</li>
+              <li>Angular</li><li>qiankun 微前端</li><li>uniapp 多端</li>
+              <li>Element Plus</li><li>Ant Design Vue</li><li>Vant</li><li>自研组件库</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>后端开发</h3>
+            <ul class="skill-tags">
+              <li>Node.js（Koa / Express / Egg）</li><li>Python</li><li>Java</li><li>MySQL</li><li>Redis</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>运维与安全</h3>
+            <ul class="skill-tags">
+              <li>Nginx</li><li>Linux 部署</li><li>多环境发布</li><li>CI / CD</li>
+              <li>RSA 加密</li><li>XSS 防护</li><li>等保合规</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>可视化 / GIS</h3>
+            <ul class="skill-tags">
+              <li>ECharts</li><li>D3</li><li>高德 / 百度地图</li>
+              <li>Leaflet</li><li>ArcGIS / NPGIS</li><li>大屏可视化</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>工程化 / 效能</h3>
+            <ul class="skill-tags">
+              <li>Vite</li><li>Webpack</li><li>pnpm</li><li>脚手架自研</li><li>性能优化</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== 教育经历（置于最底部） ======== -->
+    <section class="section section-alt" id="education">
+      <div class="container">
+        <h2 class="section-title">教育经历</h2>
+        <ul class="edu-list">
+          <li>
+            <strong>中南财经政法大学</strong> · 金融学 · 本科
+            <time>2020.09 - 2023.06</time>
+          </li>
+          <li>
+            <strong>三峡电力职业学院</strong> · 数控技术 · 大专
+            <time>2010.09 - 2013.06</time>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 李洋 · 个人线上简历 · 纯静态构建，托管于 GitHub Pages · 欢迎交流 AI / GIS 可视化 / 大数据相关机会</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
