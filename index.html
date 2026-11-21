@@ -20,6 +20,16 @@
   <!-- 站点图标（内联 SVG，免额外请求） -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <!-- 主题预设：默认深色；首屏渲染前应用用户保存的主题（localStorage），避免主题闪烁 -->
+  <script>
+    (function () {
+      // 仅在用户手动切换过主题时才写入 data-theme，未切换过则走默认深色
+      const savedTheme = localStorage.getItem('resume-theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    })();
+  </script>
   <!-- 结构化数据：帮助搜索引擎理解简历内容 -->
   <script type="application/ld+json">
   {
@@ -58,7 +68,7 @@
         <a href="#education">教育经历</a>
       </nav>
 
-      <!-- 联系方式（手机号由 JS 渲染防骚扰；邮箱 / GitHub 明文直出） -->
+      <!-- 联系方式（手机 / 邮箱 / GitHub 明文直出，点击手机号可一键复制） -->
       <ul class="side-contact">
         <li>
           <span class="contact-label">出生</span>
@@ -70,7 +80,8 @@
         </li>
         <li>
           <span class="contact-label">手机</span>
-          <button class="contact-value contact-btn" id="phoneText" type="button" title="点击复制">点击显示手机号</button>
+          <!-- 手机号明文直出（无需点击显示）；点击可一键复制纯数字 -->
+          <button class="contact-value contact-btn" id="phoneText" type="button" title="点击复制">153 7766 4773</button>
         </li>
         <li>
           <a class="contact-link" href="https://github.com/buildlove" target="_blank" rel="noopener">GitHub</a>
