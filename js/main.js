@@ -1,32 +1,32 @@
 /**
  * 个人线上简历 · 交互脚本（侧栏悬浮版）
- * 功能：深浅色主题切换（默认深色） / 侧栏菜单滚动高亮 / 手机号一键复制
+ * 功能：深浅色主题切换（默认亮色） / 侧栏菜单滚动高亮 / 手机号一键复制
  * 规范：ES6+，无外部依赖，全部中文注释
- * 更新：20261121 14:25:30
+ * 更新：20261123 09:37:43
  */
 
-// ==================== 深浅色主题切换（默认深色） ====================
-// 页面默认深色主题；用户手动切换后写入 localStorage，下次访问直接沿用。
+// ==================== 深浅色主题切换（默认亮色） ====================
+// 页面默认亮色主题；用户手动切换后写入 localStorage，下次访问直接沿用。
 // 首次应用由 index.html <head> 内联脚本在渲染前完成（避免主题闪烁），此处只负责按钮图标与点击切换。
 
 /** 主题切换按钮 */
 const themeToggle = document.getElementById('themeToggle');
 
 /**
- * 根据当前生效主题同步按钮图标：深色显示 ☀️（点击切浅色），浅色显示 🌙（点击切深色）
+ * 根据当前生效主题同步按钮图标：深色显示 ☀️（点击切亮色），亮色显示 🌙（点击切深色）
  */
 const syncThemeIcon = () => {
-  // data-theme 不是 light 即视为深色（含默认深色：属性缺省的情况）
-  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  // data-theme 是 dark 即视为深色（默认亮色：属性缺省的情况）
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   themeToggle.textContent = isDark ? '☀️' : '🌙';
 };
 
-// 初始化按钮图标（默认深色 → ☀️）
+// 初始化按钮图标（默认亮色 → 🌙）
 syncThemeIcon();
 
-// 点击按钮：深色 ↔ 浅色 互换，并持久化用户选择
+// 点击按钮：深色 ↔ 亮色 互换，并持久化用户选择
 themeToggle.addEventListener('click', () => {
-  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const nextTheme = isDark ? 'light' : 'dark';
 
   document.documentElement.setAttribute('data-theme', nextTheme);

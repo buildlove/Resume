@@ -2,7 +2,7 @@
 <!--
   个人线上简历 · 李洋（纯静态，零外部依赖，可直接发布 GitHub Pages）
   内容来源：/Users/apple/workspace/Documents/programs/简历/了解李洋/ 画像库
-  更新：20261119 13:01:11
+  更新：20261123 09:48:27（默认亮色主题 + 补入 3 段项目经验 + 侧栏脚手架集合入口）
 -->
 <html lang="zh-CN">
 <head>
@@ -20,10 +20,10 @@
   <!-- 站点图标（内联 SVG，免额外请求） -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
-  <!-- 主题预设：默认深色；首屏渲染前应用用户保存的主题（localStorage），避免主题闪烁 -->
+  <!-- 主题预设：默认亮色；首屏渲染前应用用户保存的主题（localStorage），避免主题闪烁 -->
   <script>
     (function () {
-      // 仅在用户手动切换过主题时才写入 data-theme，未切换过则走默认深色
+      // 仅在用户手动切换过主题时才写入 data-theme，未切换过则走默认亮色
       const savedTheme = localStorage.getItem('resume-theme');
       if (savedTheme) {
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -85,6 +85,8 @@
         </li>
         <li>
           <a class="contact-link" href="https://github.com/buildlove" target="_blank" rel="noopener">GitHub</a>
+          <!-- 脚手架集合：跳转 GitHub Pages 上的 5 套脚手架导航站 -->
+          <a class="contact-link" href="https://buildlove.github.io/scaffolding/" target="_blank" rel="noopener">脚手架集合</a>
           <!-- <a class="contact-link" href="showTime/" target="_blank" rel="noopener">作品展示</a> -->
         </li>
       </ul>
@@ -262,6 +264,22 @@
 
           <article class="project-card">
             <header>
+              <h3>视频大数据平台</h3>
+              <span class="project-tag">云眼大视界 · 视频大数据 · 2020.12 - 2022.09</span>
+            </header>
+            <p class="project-desc">面向公安多个行业用户的开放式专业视频大数据分析工具：提供海量视频结构化分析、RFID / Wi-Fi 多维感知数据清洗汇聚、基于 GIS 的可视化检索、关系推演分析、缉查布控等功能，逐步向事前预警防控提供大数据服务支撑。</p>
+            <ul>
+              <li>负责前端项目技术选型与工作任务分配。</li>
+              <li>使用 Angular + TypeScript + NPGIS + Layer 完成资源态势、资源检索、运维管理等界面的构建与交互实现。</li>
+              <li>负责项目中所有 ECharts 图表的数据配置与展示。</li>
+              <li>初始化地图界面，调用 NPGIS 接口新增图层，根据坐标位置添加设备展示。</li>
+              <li>使用 Node 完成数据处理，通过接口返回给前端。</li>
+            </ul>
+            <p class="project-stack">Angular · TypeScript · NPGIS · Layer · ECharts · Node.js</p>
+          </article>
+
+          <article class="project-card">
+            <header>
               <h3>智慧城市社区</h3>
               <span class="project-tag">云眼大视界 · 视频大数据</span>
             </header>
@@ -289,6 +307,39 @@
               <li>基于 Leaflet、ArcGIS 开发 GIS 地图功能，完成点位渲染与图层交互。</li>
             </ul>
             <p class="project-stack">Vue2 · Node.js + Koa · ECharts/D3 · Leaflet · ArcGIS</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>4G 基站数据分析平台</h3>
+              <span class="project-tag">云眼大视界 · 通信大数据 · 2017.07 - 2020.06</span>
+            </header>
+            <p class="project-desc">4G 基站数据分析平台，对基站数据进行多维计算、过滤与可视化分析。</p>
+            <ul>
+              <li>负责地图 / 图表模块的开发与维护。</li>
+              <li>使用 ECharts 和 D3 开发项目中的图表页面模块。</li>
+              <li>使用 Leaflet 和 ArcGIS 开发相关地图页面模块。</li>
+              <li>对数据进行较复杂的计算、过滤与可视化处理。</li>
+              <li>其他前端页面 Bug 修改与需求新增。</li>
+            </ul>
+            <p class="project-stack">ECharts · D3 · Leaflet · ArcGIS</p>
+          </article>
+
+          <article class="project-card">
+            <header>
+              <h3>基础服务项目（授权 / 更新 / 崩溃中心）</h3>
+              <span class="project-tag">上海弘连 · 基础服务 · 2014.07 - 2017.04</span>
+            </header>
+            <p class="project-desc">公司基础服务平台（10 个左右软件产品共用）：授权服务器是用户管理平台，公司所有软件以及网站的登录平台；更新服务器负责所有软件的最新版本更新；崩溃中心记录所有软件崩溃日志并发送信息给对应开发者。</p>
+            <ul>
+              <li>负责网站代码重构以及新增需求开发。</li>
+              <li>对更新服务器上传功能分为七牛上传和本地上传两种方式。</li>
+              <li>使用 multer 编写邮件模块，软件快到期时给用户发送提醒邮件。</li>
+              <li>使用 qiniu-sdk-node 封装七牛 API，实现上传、下载等功能。</li>
+              <li>新增上传不同软件包以及软件包图表的页面，实现软件包管理功能。</li>
+              <li>使用 multer 编写整个邮件发送模块，软件崩溃时发送邮件到对应开发人员邮箱。</li>
+            </ul>
+            <p class="project-stack">Node.js · Express · multer · 七牛 SDK · 邮件服务</p>
           </article>
 
           <article class="project-card">
