@@ -66,6 +66,7 @@ git push -u origin main
 - **Colors**: edit the `--primary` and other variables in the `:root` block at the top of `css/style.css`.
 - **Contact details**: edit the plaintext values in the sidebar's contact area in `index.html` (phone / email / GitHub / Scaffolding Templates are all shown in plaintext; clicking the phone number copies the digits).
 - **Export to PDF**: `Cmd/Ctrl + P` in the browser — print styles are built in (navigation and toggles are hidden automatically).
+- **Cache busting**: `css/style.css` and `js/main.js` are loaded with a `?v=` query in `index.html`. After editing either file, bump the version (e.g. `?v=202611271342`) so browsers and the GitHub Pages CDN fetch the latest copy instead of a stale cached one.
 
 ## Features
 

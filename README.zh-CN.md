@@ -67,6 +67,7 @@ git push -u origin main
 - **改配色**：`css/style.css` 顶部 `:root` 变量里的 `--primary` 等。
 - **联系方式**：在 `index.html` 侧栏「联系方式」区直接改明文（手机 / 邮箱 / GitHub / 脚手架集合均为明文直出；手机号按钮点击可一键复制纯数字）。
 - **打印导出 PDF**：浏览器 `Cmd/Ctrl + P`，已内置打印样式（自动隐藏导航与切换按钮等）。
+- **缓存刷新**：`index.html` 引用 `css/style.css` 与 `js/main.js` 时带 `?v=` 版本号。修改这两个文件后请递增版本号（如 `?v=202611271342`），强制浏览器 / GitHub Pages CDN 拉取最新文件，避免旧缓存导致页面交互失效。
 
 ## 特性
 
