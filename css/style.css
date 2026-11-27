@@ -94,8 +94,31 @@ img { max-width: 100%; display: block; }
   margin-left: auto;               /* 悬浮到右边 */
   transform: translateY(-2px);     /* 轻微上浮 */
 }
+/* 顶部一行：问候语 + 中英文切换按钮（按钮靠右） */
+.side-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
 .side-hello { color: var(--primary); font-weight: 600; letter-spacing: 2px; font-size: 0.85rem; }
 .side-name { font-size: 2rem; font-weight: 800; line-height: 1.2; margin: 2px 0; }
+
+/* 语言切换按钮：胶囊样式，英文界面显示「中文」/ 中文界面显示「English」 */
+.lang-toggle {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--primary-soft);
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.lang-toggle:hover { background: var(--surface); border-color: var(--primary); }
+.lang-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .side-tagline { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 .side-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .side-chips li {
@@ -342,7 +365,7 @@ img { max-width: 100%; display: block; }
     --border: #e5e7eb;
     --shadow: none;
   }
-  .side-menu, .theme-toggle { display: none !important; }
+  .side-menu, .theme-toggle, .lang-toggle { display: none !important; }
   .sidebar {
     position: static; width: 100%; border-right: none;
     border-bottom: 2px solid #000; padding: 0 0 10pt;
